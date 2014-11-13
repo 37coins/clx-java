@@ -12,10 +12,15 @@ import com._37coins.clx.helper.exception.ClxException;
 public class RestApiTest {
 
   static RestAPI restApi;
+  static boolean inOriginIP; 
   
   @BeforeClass
   static public void before(){
     restApi = new RestAPI("37Coins_gw0","Hi3nGY6p");
+    inOriginIP= ( System.getProperties().get("inOriginIP")!=null);
+    System.out.println("System.getProperties():"+System.getProperties());
+    System.out.println("System.getenv():"+System.getenv());
+    System.out.println("inOriginIP:"+inOriginIP);
   }
   
   @Test
@@ -48,7 +53,7 @@ public class RestApiTest {
   
   
   //Unable to test "Originating IP address is not authorized"
-  //@Test 
+  @Test 
   public void testBadPassword() {
     try {
       restApi = new RestAPI("37Coins_gw0","badpassword");
