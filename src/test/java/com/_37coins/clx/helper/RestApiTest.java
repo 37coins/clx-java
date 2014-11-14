@@ -18,8 +18,6 @@ public class RestApiTest {
   static public void before(){
     restApi = new RestAPI("37Coins_gw0","Hi3nGY6p");
     inOriginIP= ( System.getProperties().get("inOriginIP")!=null);
-    System.out.println("System.getProperties():"+System.getProperties());
-    System.out.println("System.getenv():"+System.getenv());
     System.out.println("inOriginIP:"+inOriginIP);
   }
   
@@ -52,37 +50,37 @@ public class RestApiTest {
   }
   
   
-  //Unable to test "Originating IP address is not authorized"
   @Test 
   public void testBadPassword() {
-    try {
-      restApi = new RestAPI("37Coins_gw0","badpassword");
-      SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
-      assertEquals(false,resp.messageAccepted());
-      assertEquals(401,resp.getStatusCode());
-      assertEquals("Incorrect account or password",resp.getMessageID());
-    } catch (ClxException e) {
-      e.printStackTrace();
-      fail("exception");
+    if(inOriginIP){
+      try {
+        restApi = new RestAPI("37Coins_gw0","badpassword");
+        SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
+        assertEquals(false,resp.messageAccepted());
+        assertEquals(401,resp.getStatusCode());
+        assertEquals("Incorrect account or password",resp.getMessageID());
+      } catch (ClxException e) {
+        e.printStackTrace();
+        fail("exception");
+      }
     }
   }
 
   
-  //Unable to test "Originating IP address is not authorized"
-  //@Test@Test
+  @Test
   public void testSendSMS() {
-    try {
-      SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
-      System.out.println("code:"+resp.getStatusCode());
-      System.out.println("mess:"+resp.getMessageID());
-      
-      
-    } catch (ClxException e) {
-      e.printStackTrace();
-      fail("exception");
-      
+    if(inOriginIP){
+      try {
+        SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
+        System.out.println("code:"+resp.getStatusCode());
+        System.out.println("mess:"+resp.getMessageID());
+        
+        
+      } catch (ClxException e) {
+        e.printStackTrace();
+        fail("exception");
+      }
     }
-    
     
   }
 
