@@ -40,13 +40,13 @@ public class RestAPI {
   }
 
   public SendSMSResponse sendSMS(String from, String to, String text,
-      HashMap<String, String> optionalParameters) throws ClxException {
+      SendSMSOptionalParameters optionalParameters) throws ClxException {
     try {
-      if(optionalParameters==null) optionalParameters=new HashMap<String, String>();
+      if(optionalParameters==null) optionalParameters=new SendSMSOptionalParameters();
       
       String charset;
-      if(optionalParameters.containsKey("charset")){
-        charset=optionalParameters.get("charset");
+      if(optionalParameters.getCharset()!=null){
+        charset=optionalParameters.getCharset();
       }else{
         charset="UTF-8";
       }
@@ -54,6 +54,12 @@ public class RestAPI {
       text=URLEncoder.encode(text,charset);
 
       String uri=String.format("%s&from=%s&to=%s&text=text&charset=%s",BaseURI,from,to,text,charset);
+      
+      if(optionalParameters.getUdh()!=null){
+        uri=String.format("%s&udh=%s",uri,URLEncoder.encode(optionalParameters.getUdh(),charset));
+      }
+      
+      
       
       System.out.println("uri:"+uri);
 

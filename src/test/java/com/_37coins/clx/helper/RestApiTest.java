@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com._37coins.clx.helper.api.client.RestAPI;
+import com._37coins.clx.helper.api.client.SendSMSOptionalParameters;
 import com._37coins.clx.helper.api.response.SendSMSResponse;
 import com._37coins.clx.helper.exception.ClxException;
 
@@ -68,10 +69,26 @@ public class RestApiTest {
 
   
   @Test
-  public void testSendSMS() {
+  public void testSendSMSBadTo() {
     if(inOriginIP){
       try {
-        SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
+        SendSMSResponse resp = restApi.sendSMS("639221000300", "11", "aers", null);
+        assertEquals(false,resp.messageAccepted());
+        assertEquals(403,resp.getStatusCode());
+        assertEquals("To number Incorrect account or password",resp.getMessageID());
+      } catch (ClxException e) {
+        e.printStackTrace();
+        fail("exception");
+      }
+    }
+    
+  }
+
+  @Test
+  public void testSendSMSSimple() {
+    if(inOriginIP){
+      try {
+        SendSMSResponse resp = restApi.sendSMS("639221000300", "639083014753", "testSendSMSSimple ", null);
         System.out.println("code:"+resp.getStatusCode());
         System.out.println("mess:"+resp.getMessageID());
         assertEquals(false,resp.messageAccepted());
@@ -84,5 +101,23 @@ public class RestApiTest {
     }
     
   }
-
+  
+  @Test
+  public void testSendSMSISO88591() {
+    if(inOriginIP){
+      try {
+        SendSMSOptionalParameters opt= new SendSMSOptionalParameters();
+        opt.setCharset("ISO-8859-1");
+        SendSMSResponse resp = restApi.sendSMS("639221000300", "639083014753", "testSendSMSISO88591 áéíóú äëïöü ñ ß ", opt);
+        System.out.println("mess:"+resp.getMessageID());
+        assertEquals(false,resp.messageAccepted());
+        assertEquals(403,resp.getStatusCode());
+        assertEquals("To number Incorrect account or password",resp.getMessageID());
+      } catch (ClxException e) {
+        e.printStackTrace();
+        fail("exception");
+      }
+    }
+    
+  }
 }
