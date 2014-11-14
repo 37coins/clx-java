@@ -74,8 +74,8 @@ public class RestApiTest {
       try {
         SendSMSResponse resp = restApi.sendSMS("639221000300", "11", "aers", null);
         assertEquals(false,resp.messageAccepted());
-        assertEquals(403,resp.getStatusCode());
-        assertEquals("To number Incorrect account or password",resp.getMessageID());
+        assertEquals(406,resp.getStatusCode());
+        assertEquals("Not acceptable 3",resp.getMessageID());
       } catch (ClxException e) {
         e.printStackTrace();
         fail("exception");
@@ -91,9 +91,9 @@ public class RestApiTest {
         SendSMSResponse resp = restApi.sendSMS("639221000300", "639083014753", "testSendSMSSimple ", null);
         System.out.println("code:"+resp.getStatusCode());
         System.out.println("mess:"+resp.getMessageID());
-        assertEquals(false,resp.messageAccepted());
-        assertEquals(403,resp.getStatusCode());
-        assertEquals("To number Incorrect account or password",resp.getMessageID());
+        assertEquals(true,resp.messageAccepted());
+        assertEquals(202,resp.getStatusCode());
+        assertNotNull(resp.getMessageID());
       } catch (ClxException e) {
         e.printStackTrace();
         fail("exception");
@@ -110,9 +110,9 @@ public class RestApiTest {
         opt.setCharset("ISO-8859-1");
         SendSMSResponse resp = restApi.sendSMS("639221000300", "639083014753", "testSendSMSISO88591 áéíóú äëïöü ñ ß ", opt);
         System.out.println("mess:"+resp.getMessageID());
-        assertEquals(false,resp.messageAccepted());
-        assertEquals(403,resp.getStatusCode());
-        assertEquals("To number Incorrect account or password",resp.getMessageID());
+        assertEquals(true,resp.messageAccepted());
+        assertEquals(202,resp.getStatusCode());
+        assertNotNull(resp.getMessageID());
       } catch (ClxException e) {
         e.printStackTrace();
         fail("exception");
