@@ -54,8 +54,8 @@ public class RestApiTest {
   public void testBadPassword() {
     if(inOriginIP){
       try {
-        restApi = new RestAPI("37Coins_gw0","badpassword");
-        SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
+        RestAPI restApiLocal = new RestAPI("37Coins_gw0","badpassword");
+        SendSMSResponse resp = restApiLocal.sendSMS("12", "11", "aers", null);
         assertEquals(false,resp.messageAccepted());
         assertEquals(401,resp.getStatusCode());
         assertEquals("Incorrect account or password",resp.getMessageID());
