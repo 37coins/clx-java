@@ -74,8 +74,9 @@ public class RestApiTest {
         SendSMSResponse resp = restApi.sendSMS("12", "11", "aers", null);
         System.out.println("code:"+resp.getStatusCode());
         System.out.println("mess:"+resp.getMessageID());
-        
-        
+        assertEquals(false,resp.messageAccepted());
+        assertEquals(403,resp.getStatusCode());
+        assertEquals("To number Incorrect account or password",resp.getMessageID());
       } catch (ClxException e) {
         e.printStackTrace();
         fail("exception");
