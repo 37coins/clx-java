@@ -59,6 +59,9 @@ public class RestAPI {
         uri=String.format("%s&udh=%s",uri,URLEncoder.encode(optionalParameters.getUdh(),charset));
       }
       
+      if(optionalParameters.getMclass()!=null){
+        uri=String.format("%s&mclass=%s",uri,optionalParameters.getMclass().toString());
+      }
       
       
       System.out.println("uri:"+uri);

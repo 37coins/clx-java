@@ -75,7 +75,7 @@ public class RestApiTest {
         SendSMSResponse resp = restApi.sendSMS("639221000300", "11", "aers", null);
         assertEquals(false,resp.messageAccepted());
         assertEquals(406,resp.getStatusCode());
-        assertEquals("Not acceptable 3",resp.getMessageID());
+        assertEquals("Sink not found",resp.getMessageID());
       } catch (ClxException e) {
         e.printStackTrace();
         fail("exception");

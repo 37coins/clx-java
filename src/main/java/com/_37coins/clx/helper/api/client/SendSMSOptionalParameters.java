@@ -24,7 +24,7 @@ public class SendSMSOptionalParameters {
    * 2 = Sends to SIM
    * 3 = Sends to SIM Toolkit
    */
-  private int mclass;
+  private Integer mclass;
   
   /**
    * Sets Message Waiting Indicator bits in the DCS field. 
@@ -32,7 +32,7 @@ public class SendSMSOptionalParameters {
    * The accepted values are 0, 1, 2, 3 for activating the voice, fax, e-mail and other indicator. 
    * Or 4, 5, 6, 7 for deactivating respectively.
    */
-  private int mwi;
+  private Integer mwi;
   
   /**
    * Sets the coding scheme bits in DCS field.
@@ -45,18 +45,18 @@ public class SendSMSOptionalParameters {
    * 
    * If unset, defaults to 7-bit unless a UDH is defined, which sets coding to 8-bit.
    */
-  private int coding;
+  private Integer coding;
   
   /**
    * If given, CLX will only try to send the message for this many minutes. 
    * If the destination mobile is unreachable the SMSC discards the message
    */
-  private int validity;
+  private Integer validity;
   
   /**
    * If given, the message will be postponed to be delivered at now plus this many minutes
    */
-  private int defered;
+  private Integer defered;
   
   /**
    * Request for delivery reports with the state of the sent message. The value is a bit mask composed of:
@@ -71,7 +71,7 @@ public class SendSMSOptionalParameters {
    * For example if you want to get delivery (1) and non-delivery (2) you set the dlr-mask value to 3 (1+2). 
    * If given, dlr-url must be given as well.
    */
-  private int dlr_mask;
+  private Integer dlr_mask;
   
   /**
    * If dlr-mask is given, this is the URL to be fetched.
@@ -84,7 +84,7 @@ public class SendSMSOptionalParameters {
    * &pid=127&coding=2&alt-dcs=1&mclass=3
    * 
    */
-  private int pid;
+  private Integer pid;
   
   /**
    * If unset, 0X per default.
@@ -92,11 +92,11 @@ public class SendSMSOptionalParameters {
    * 1= uses FX.
    * 2 = force 0X
    */
-  private int alt_dcs;
+  private Integer alt_dcs;
   
   /**
    * A user provided identity of the message. 
-   * If DLR is requested it will be possible to have this user provided identity included into DLR-URL. 
+   * If DLR is requested it will be possible to have this user provided identity included Integero DLR-URL. 
    * Maximum length of this field is 32 bytes.
    */
   private String id;
@@ -119,56 +119,56 @@ public class SendSMSOptionalParameters {
     return this;
   }
 
-  public int getMclass() {
+  public Integer getMclass() {
     return mclass;
   }
 
-  public SendSMSOptionalParameters setMclass(int mclass) {
+  public SendSMSOptionalParameters setMclass(Integer mclass) {
     this.mclass = mclass;
     return this;
   }
 
-  public int getMwi() {
+  public Integer getMwi() {
     return mwi;
   }
 
-  public SendSMSOptionalParameters setMwi(int mwi) {
+  public SendSMSOptionalParameters setMwi(Integer mwi) {
     this.mwi = mwi;
     return this;
   }
 
-  public int getCoding() {
+  public Integer getCoding() {
     return coding;
   }
 
-  public SendSMSOptionalParameters setCoding(int coding) {
+  public SendSMSOptionalParameters setCoding(Integer coding) {
     this.coding = coding;
     return this;
   }
 
-  public int getValidity() {
+  public Integer getValidity() {
     return validity;
   }
 
-  public SendSMSOptionalParameters setValidity(int validity) {
+  public SendSMSOptionalParameters setValidity(Integer validity) {
     this.validity = validity;
     return this;
   }
 
-  public int getDefered() {
+  public Integer getDefered() {
     return defered;
   }
 
-  public SendSMSOptionalParameters setDefered(int defered) {
+  public SendSMSOptionalParameters setDefered(Integer defered) {
     this.defered = defered;
     return this;
   }
 
-  public int getDlr_mask() {
+  public Integer getDlr_mask() {
     return dlr_mask;
   }
 
-  public SendSMSOptionalParameters setDlr_mask(int dlr_mask) {
+  public SendSMSOptionalParameters setDlr_mask(Integer dlr_mask) {
     this.dlr_mask = dlr_mask;
     return this;
   }
@@ -182,20 +182,20 @@ public class SendSMSOptionalParameters {
     return this;
   }
 
-  public int getPid() {
+  public Integer getPid() {
     return pid;
   }
 
-  public SendSMSOptionalParameters setPid(int pid) {
+  public SendSMSOptionalParameters setPid(Integer pid) {
     this.pid = pid;
     return this;
   }
 
-  public int getAlt_dcs() {
+  public Integer getAlt_dcs() {
     return alt_dcs;
   }
 
-  public SendSMSOptionalParameters setAlt_dcs(int alt_dcs) {
+  public SendSMSOptionalParameters setAlt_dcs(Integer alt_dcs) {
     this.alt_dcs = alt_dcs;
     return this;
   }
