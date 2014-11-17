@@ -1,0 +1,28 @@
+language: java
+jdk:
+ - openjdk7
+
+branches:
+  only:
+    - develop
+    - master
+env: 
+  global: 
+   #SLACK_TOKEN
+   - secure: BHaKpcpdCwMO7xWQFkLD5XVBPH34cEnr7rZu9KnzAcqLIFJP0rdGDGOXSGF1u7PlNm3blxvEbyBTPE3nDJ6eJKKltffpHv215UIBifV3uRGJ2EimvKNaHwE+ZYaMFq5S7Wxszjn+ALd0hni6/baBAMexXz4cb8mHDvK2FDKc1OH17DnAyyvV6t7n0RScnjJEMsqN5cvleU/HEqsbsFTNwdvWNs1nQHI5qC6yz5PCvaGmjVKF7bGVkaWrGNYuMibVcpURLlpAx3BDwXXfaZZuJCGBp48fdPIqfxgi8LTa1wNeqKcr9hbb/zklPsL2d67s6YcZ5c/JjstSU0BH214GUA==
+   - SLACK_ORG=37coins 
+   - PROJECT=clx-java
+
+after_success : 
+   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s 
+
+after_failure :
+   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
+   - mvn clean deploy -DskipTests
+
+notifications:
+    email:
+      recipients:
+        - dev@37coins.com
+      on_success: always
+      on_failure: change
