@@ -57,7 +57,7 @@ def post_message(connection, url, success, project):
 
 def main():
   try:
-	opts, args = getopt.getopt(sys.argv[1:], ':sf', ['project=', 'org=', 'token='])
+	opts, args = getopt.getopt(sys.argv[1:], ':sf', ['project=', 'org=', 'urlpath='])
   except getopt.GetoptError as err:
 	print str(err)
 	sys.exit(2)
