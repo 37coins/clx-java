@@ -22,8 +22,8 @@ env:
 
 after_success : 
    - bash  set_mvn_settings_libs.bash $MVN_REPO_PASS $MVN_REPO_PASS_WRITE
-   - python slack_notifier_new.py --project $PROJECT --org $SLACK_ORG --urlpath $SLACK_URLPATH -s 
    - mvn clean deploy -DskipTests
+   - python slack_notifier_new.py --project $PROJECT --org $SLACK_ORG --urlpath $SLACK_URLPATH -s 
 
 after_failure :
    - python slack_notifier_new.py --project $PROJECT --org $SLACK_ORG --urlpath $SLACK_URLPATH
