@@ -3,10 +3,10 @@ import getopt, sys, os
 import subprocess
 
 def get_connection(organization):
-  return httplib.HTTPSConnection('%s.slack.com' % organization)
+  return httplib.HTTPSConnection('hooks.slack.com')
 
-def get_url(token):
-  return '/services/hooks/incoming-webhook?token=%s' % token
+def get_url(urlpath):
+  return '/services/%s' % urlpath
 
 def get_data_from_git(format_string, commit):
   return subprocess.check_output(['git', 'log', '-1', '--format=format:%s' % format_string, commit])
@@ -73,11 +73,11 @@ def main():
 	  project = arg
 	elif o == '--org':
 	  organization = arg
-	elif o == '--token':
-	  token = arg
+	elif o == '--urlpath':
+	  urlpath = arg
 
   connection = get_connection(organization)
-  url = get_url(token)
+  url = get_url(urlpath)
   post_message(connection, url, success, project)
 
 if __name__ == '__main__':
