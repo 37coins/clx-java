@@ -4,10 +4,8 @@ import subprocess
 
 def get_connection(organization):
   return httplib.HTTPSConnection('hooks.slack.com')
-  #return httplib.HTTPSConnection('requestb.in')
 
 def get_url(urlpath):
-  #return '/z80uzoz8?services/%s' % urlpath
   return '/services/%s' % urlpath
 
 def get_data_from_git(format_string, commit):
