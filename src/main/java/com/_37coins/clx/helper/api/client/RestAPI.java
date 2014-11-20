@@ -63,6 +63,10 @@ public class RestAPI {
         uri=String.format("%s&mclass=%s",uri,optionalParameters.getMclass().toString());
       }
       
+      if(optionalParameters.getDlr_mask()!=null){
+        uri=String.format("%s&dlr-mask=%s",uri,optionalParameters.getDlr_mask().toString());
+        uri=String.format("%s&dlr-url=%s",uri,URLEncoder.encode(optionalParameters.getDlr_url().toString(),charset));
+      }
       
       System.out.println("uri:"+uri);
 
