@@ -53,7 +53,7 @@ public class RestAPI {
       to=URLEncoder.encode(to,charset);
       text=URLEncoder.encode(text,charset);
 
-      String uri=String.format("%s&from=%s&to=%s&text=text&charset=%s",BaseURI,from,to,text,charset);
+      String uri=String.format("%s&from=%s&to=%s&text=%s&charset=%s",BaseURI,from,to,text,charset);
       
       if(optionalParameters.getUdh()!=null){
         uri=String.format("%s&udh=%s",uri,URLEncoder.encode(optionalParameters.getUdh(),charset));
