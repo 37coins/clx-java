@@ -39,6 +39,7 @@ def post_message(connection, url, success, project):
 	'fallback': text,
 	'pretext': text,
 	'color': color,
+	'icon_url': 'https://avatars2.githubusercontent.com/u/5647221?v=3&s=100', 
 	'fields': [
 	  {
 		'title': get_author(commit),
