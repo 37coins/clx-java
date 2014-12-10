@@ -50,6 +50,7 @@ public class RestAPI {
       }else{
         charset="UTF-8";
       }
+      from=URLEncoder.encode(from,charset);
       to=URLEncoder.encode(to,charset);
       text=URLEncoder.encode(text,charset);
 
